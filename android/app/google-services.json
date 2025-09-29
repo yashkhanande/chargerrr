@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25837029385",
+    "project_id": "chargerrr-5c735",
+    "storage_bucket": "chargerrr-5c735.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25837029385:android:ff5deb25bc99e5ee8d50d8",
+        "android_client_info": {
+          "package_name": "com.example.chargerrr_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6xM1l44M2rYF4tfOmY8wlqvd7Lm3ntN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
