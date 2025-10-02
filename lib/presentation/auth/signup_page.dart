@@ -118,25 +118,6 @@ class SignupPage extends StatelessWidget {
                             }
                         ))
                         ,
-                        // Container(
-                        //   width: MediaQuery.of(context).size.width,
-                        //   decoration: BoxDecoration(
-                        //     color: Color(0xff155DFC),
-                        //     borderRadius: BorderRadius.circular(10),
-                        //   ),
-                        //   child: ElevatedButton(
-                        //     onPressed: () {},
-                        //     style: ElevatedButton.styleFrom(
-                        //       backgroundColor: AppColors().appPrimary,
-                        //       foregroundColor: Colors.white,
-                        //       elevation: 0,
-                        //     ),
-                        //     child: Text(
-                        //       "Sign In",
-                        //       style: TextStyle(fontWeight: FontWeight.bold),
-                        //     ),
-                        //   ),
-                        // ),
                         TextButton(
                           onPressed: () {
                             Get.to(()=>LoginPage());

@@ -111,17 +111,45 @@ class StationDetailView extends StatelessWidget{
                         ],
                       ),
                       const SizedBox(height: 20,),
-                      SizedBox(
-                        height: 300,
-                        child:MapWidget(
-                          onMapCreated:mapController.onMapCreated,
-                          cameraOptions: CameraOptions(
-                            center: Point(coordinates: Position(station.longitude, station.latitude)),
-                            zoom: 15
-                          ),
-                        ),
-                      )
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: 300,
+                            child:Obx(()=> MapWidget(
+                              onMapCreated:mapController.onMapCreated,
+                              cameraOptions: CameraOptions(
+                                  center: Point(coordinates: Position(station.longitude, station.latitude)),
+                                  zoom: mapController.zoom.value
+                              ),
+                            ),
+                            )
 
+                          ),
+                          Positioned(
+                            bottom: 20,
+                              right: 20,
+                              child: ElevatedButton(onPressed: (){
+                                mapController.setupLocationTracking();
+                              }, child: Icon(Icons.location_on))),
+
+                          Positioned(
+                              bottom: 20,
+                              left: 20,
+                              child: Column(
+                                children: [
+                                  ElevatedButton(onPressed: (){
+                                    mapController.zoomIn();
+                                  }, child: Text("+")
+                                  ),
+                                  ElevatedButton(onPressed: (){
+                                    mapController.zoomOut();
+                                  }, child: Text("-")
+                                  ),
+                                ],
+                              )),
+
+                        ],
+                      )
                     ],
                   ))
             ],
