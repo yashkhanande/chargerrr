@@ -81,6 +81,7 @@ class LoginView extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             TextField(
+                              keyboardType: TextInputType.emailAddress,
                               controller: authController.emailController,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.mail),
@@ -117,44 +118,21 @@ class LoginView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text("Forgot Password ?"),
-                        ),
-                        const SizedBox(height: 10),
+
+                        const SizedBox(height: 20),
                         Obx(()=>authController.isLoading.value ? CircularProgressIndicator() :
                         AppButton(buttonTitle: "Sign In",
                             onPressed: (){
                           Get.find<AuthController>().login();
                             }
-                        ))
-                        ,
-                        // Container(
-                        //   width: MediaQuery.of(context).size.width,
-                        //   decoration: BoxDecoration(
-                        //     color: Color(0xff155DFC),
-                        //     borderRadius: BorderRadius.circular(10),
-                        //   ),
-                        //   child: ElevatedButton(
-                        //     onPressed: () {},
-                        //     style: ElevatedButton.styleFrom(
-                        //       backgroundColor: AppColors().appPrimary,
-                        //       foregroundColor: Colors.white,
-                        //       elevation: 0,
-                        //     ),
-                        //     child: Text(
-                        //       "Sign In",
-                        //       style: TextStyle(fontWeight: FontWeight.bold),
-                        //     ),
-                        //   ),
-                        // ),
+                        )),
+
                         TextButton(
                           onPressed: () {
                             Get.to(()=>SignupPage());
                           },
                           child: Text(
-                            "Don't have an account? Sign up for free",
+                            "Don't have an account? Sign up for free",textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 15, color: Colors.blue),
                           ),
                         ),

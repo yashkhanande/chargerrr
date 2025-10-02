@@ -3,9 +3,22 @@ import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+
+
+const String ACCESS_TOKEN = String.fromEnvironment("ACCESS_TOKEN");
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
+  MapboxOptions.setAccessToken(ACCESS_TOKEN);
+
+  if(ACCESS_TOKEN.isEmpty){
+      print("Error in maps Mapbox Access Token is missing! Use --dart-define.");
+  }
+
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

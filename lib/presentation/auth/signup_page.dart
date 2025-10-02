@@ -72,6 +72,7 @@ class SignupPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             TextField(
+                              keyboardType: TextInputType.emailAddress,
                               controller: authController.emailController,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.mail),
@@ -108,12 +109,8 @@ class SignupPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text("Forgot Password ?"),
-                        ),
-                        const SizedBox(height: 10),
+
+                        const SizedBox(height: 20),
                         Obx(()=>authController.isLoading.value ? CircularProgressIndicator() :
                         AppButton(buttonTitle: "Create Account",
                             onPressed: (){
@@ -145,7 +142,7 @@ class SignupPage extends StatelessWidget {
                             Get.to(()=>LoginPage());
                           },
                           child: Text(
-                            "Already Member? Sign in",
+                            "Already Member? Sign in",textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 15, color: Colors.blue),
                           ),
                         ),
