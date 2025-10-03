@@ -1,16 +1,17 @@
-# chargerrr_app
+Chargerrr App
 
-A new Flutter project.
+This app is built to find nearby charging stations.
 
-## Getting Started
+Requirements
 
-This project is a starting point for a Flutter application.
+Mapbox Access Token
+To use the map features, you need a valid Mapbox ACCESS_TOKEN.
 
-A few resources to get you started if this is your first Flutter project:
+Running the Project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+If you are using Android Studio or the terminal, run your app like this:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter run -d <device_id> --dart-define=ACCESS_TOKEN=<YOUR_ACCESS_TOKEN>
+
+
+Replace <device_id> with your device ID (e.g., from flutter devices) and <YOUR_ACCESS_TOKEN> with your Mapbox token.
