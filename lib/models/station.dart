@@ -3,6 +3,7 @@ class Station {
   final String id;
   final String name;
   final String address;
+  final String city;
   final double latitude;
   final double longitude;
   final int availablePoints;
@@ -13,6 +14,7 @@ class Station {
     required this.id,
     required this.name,
     required this.address,
+    required this.city,
     required this.latitude,
     required this.longitude,
     required this.availablePoints,
@@ -26,6 +28,7 @@ class Station {
       id: id,
       name: json["name"] ?? "",
       address: json["address"] ?? "",
+      city: json["city"] ?? "",
       latitude: geo.latitude,
       longitude: geo.longitude,
       availablePoints: json["available_points"] ?? 0,

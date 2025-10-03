@@ -4,6 +4,7 @@ import 'package:chargerrr_app/components/stations_card.dart';
 import 'package:chargerrr_app/controllers/auth_controller.dart';
 import 'package:chargerrr_app/controllers/statio_controller.dart';
 import 'package:chargerrr_app/presentation/station_detail_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,31 +25,39 @@ class HomePage extends StatelessWidget {
             children: [
               AppSearchbar(),
               const SizedBox(height: 10),
-              Obx((){
-                return Row(children: [Text("${stationController.stations.length} Stations found"), Spacer()]);
+              Obx(() {
+                return Row(
+                  children: [
+                    Text("${stationController.filteredStations.length} Stations found"),
+                    Spacer(),
+                  ],
+                );
               }),
               const SizedBox(height: 10),
               Expanded(
-                child: Obx((){
-                  if(stationController.stations.isEmpty ){
-                   return const Center(child: CircularProgressIndicator());
+                child: Obx(() {
+                  if (stationController.filteredStations.isEmpty) {
+                    return const Center(child: CircularProgressIndicator());
                   }
                   return ListView.separated(
-                    itemCount: stationController.stations.length,
-                      itemBuilder: (context , index){
-                      final station = stationController.stations[index];
+                    itemCount: stationController.filteredStations.length,
+                    itemBuilder: (context, index) {
+                      final station = stationController.filteredStations[index];
                       return StationsCard(
-                          stationName: station.name,
-                          availablePoints: station.availablePoints,
-                          totalPoints: station.totalPoints,
-                          address: station.address,
-                          onPressed: (){
-                            Get.to(()=>StationDetailView(),arguments: station);
-                          },amenities: station.amenities,);
-                      }, separatorBuilder: (_, _)=>const SizedBox(height: 10,),);
+                        stationName: station.name,
+                        availablePoints: station.availablePoints,
+                        totalPoints: station.totalPoints,
+                        address: station.address,
+                        onPressed: () {
+                          Get.to(() => StationDetailView(), arguments: station);
+                        },
+                        amenities: station.amenities,
+                      );
+                    },
+                    separatorBuilder: (_, _) => const SizedBox(height: 10),
+                  );
                 }),
-              )
-
+              ),
             ],
           ),
         ),

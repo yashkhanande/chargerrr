@@ -1,4 +1,6 @@
+import 'package:chargerrr_app/controllers/auth_controller.dart';
 import 'package:chargerrr_app/presentation/auth/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,13 +9,39 @@ class ProfilePage extends StatelessWidget{
   const ProfilePage ({super.key});
   @override
   Widget build(BuildContext context){
+    AuthController authController = Get.find();
+    final user = authController.currentUser.value;
     return Scaffold(
-      body: SafeArea(child: Column(
-        children: [
-          IconButton(onPressed: (){
-            Get.offAll(()=>LoginPage());
-          }, icon: Icon(Icons.exit_to_app))
-        ],
+
+      body: SafeArea(child:
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text('Email : ' ,style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 16),),
+                Text(user?.email ?? "user"),
+              ],
+            ),
+
+            Row(
+              children: [
+                TextButton.icon(onPressed: (){
+                  Get.offAll(()=>LoginPage());
+                }, label: Row(
+                  children: [
+                    Text("LogOut"),
+                    const SizedBox(width: 10,),
+                    Icon(Icons.exit_to_app)
+                  ],
+                ))
+
+              ],
+            )
+          ],
+        ),
       )),
     );
   }
