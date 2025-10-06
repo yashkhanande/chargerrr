@@ -66,6 +66,27 @@ class SignupPage extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                             Text(
+                              "Name ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 5),
+                            TextField(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: authController.nameController,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.mail),
+                                hint: Text("Enter your Full name"),
+                                filled: true,
+                                fillColor: Colors.grey.withValues(alpha: 0.1),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                alignLabelWithHint: true,
+                              ),
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            const SizedBox(height: 10),
                             Text(
                               "Email Address",
                               style: TextStyle(fontWeight: FontWeight.bold),

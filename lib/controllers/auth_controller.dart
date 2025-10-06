@@ -1,29 +1,52 @@
-import 'package:chargerrr_app/components/app_colors.dart';
 import 'package:chargerrr_app/presentation/auth/login_page.dart';
 import 'package:chargerrr_app/presentation/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'
-    show FirebaseAuth, FirebaseAuthException, User;
+    show FirebaseAuth, FirebaseAuthException, User, UserCredential;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
   var currentUser = Rx<User?>(null);
+  var userData = Rx<Map<String, dynamic>?>(null);
 
   var isLoading = false.obs;
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void SignUp() async {
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        nameController.text.isEmpty) {
+      Get.snackbar(
+        "Error",
+        "Please enter name, email and password ",
+        backgroundColor: Colors.redAccent.withValues(alpha: 0.1),
+        colorText: Colors.red,
+      );
+      return;
+    }
     try {
       isLoading.value = true;
-      await _auth.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(
+            email: emailController.text,
+            password: passwordController.text,
+          );
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({'name': nameController.text, 'email': emailController.text});
+
+          final doc = await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).get();
+
+          if(doc.exists){
+            userData.value = doc.data();
+          }
       Get.snackbar(
         "Success",
         "SignUp Successful",
@@ -51,10 +74,19 @@ class AuthController extends GetxController {
   void login() async {
     try {
       isLoading.value = true;
-      await _auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .get();
+
+      if (doc.exists) {
+        userData.value = doc.data();
+      }
+
       Get.snackbar(
         "Success",
         "Login Successful",
@@ -94,11 +126,20 @@ class AuthController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    _auth.authStateChanges().listen((User? user) {
+    _auth.authStateChanges().listen((User? user) async {
       currentUser.value = user;
       if (user == null) {
         Get.offAll(() => LoginPage());
       } else {
+        final doc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        if (doc.exists) {
+          userData.value = doc.data();
+        }
+
         Get.offAll(() => HomePage());
       }
     });

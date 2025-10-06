@@ -19,6 +19,10 @@ class ProfilePage extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            CircleAvatar(
+              child: Image.asset('assets/boy.png',),
+            ),
+            Text("Name : ${authController.userData.value!['name']}"),
             Row(
               children: [
                 Text('Email : ' ,style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 16),),
