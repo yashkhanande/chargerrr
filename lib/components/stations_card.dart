@@ -1,8 +1,6 @@
-import 'package:chargerrr_app/controllers/statio_controller.dart';
+import 'package:chargerrr_app/components/container_design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 class StationsCard extends StatelessWidget {
   final String stationName;
   final int availablePoints;
@@ -23,13 +21,13 @@ class StationsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.withValues(alpha: 0.2)),
-        ),
+      child: ContainerDesign(
+        // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(12),
+        //   color: Colors.white,
+        //   border: Border.all(color: Colors.grey.withValues(alpha: 0.2)),
+        // ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -106,7 +104,7 @@ class StationsCard extends StatelessWidget {
                     child: Text(
                       amenities[index],
                       style: TextStyle(
-                        color: Color(0xff00008b),
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

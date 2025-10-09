@@ -116,6 +116,7 @@ class StationDetailView extends StatelessWidget{
                           SizedBox(
                             height: 300,
                             child:Obx(()=> MapWidget(
+                              styleUri: MapboxStyles.DARK,
                               onMapCreated:mapController.onMapCreated,
                               cameraOptions: CameraOptions(
                                   center: Point(coordinates: Position(station.longitude, station.latitude)),

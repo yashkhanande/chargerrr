@@ -1,11 +1,9 @@
 import 'package:chargerrr_app/components/app_searchbar.dart';
 import 'package:chargerrr_app/components/my_appbar.dart';
 import 'package:chargerrr_app/components/stations_card.dart';
-import 'package:chargerrr_app/controllers/auth_controller.dart';
 import 'package:chargerrr_app/controllers/statio_controller.dart';
 import 'package:chargerrr_app/presentation/auth/login_page.dart';
 import 'package:chargerrr_app/presentation/station_detail_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +24,15 @@ class HomePage extends StatelessWidget {
             children: [
               AppSearchbar(),
               const SizedBox(height: 10),
+              TextButton.icon(onPressed: (){
+                  Get.offAll(()=>LoginPage());
+                }, label: Row(
+                  children: [
+                    Text("LogOut"),
+                    const SizedBox(width: 10,),
+                    Icon(Icons.exit_to_app)
+                  ],
+                )),
               Obx(() {
                 return Row(
                   children: [

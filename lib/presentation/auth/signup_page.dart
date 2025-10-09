@@ -1,3 +1,5 @@
+import 'package:chargerrr_app/components/app_textfield.dart';
+import 'package:chargerrr_app/components/container_design.dart';
 import 'package:chargerrr_app/controllers/auth_controller.dart';
 import 'package:chargerrr_app/presentation/auth/login_page.dart';
 import 'package:flutter/material.dart';
@@ -32,17 +34,17 @@ class SignupPage extends StatelessWidget {
                   Text("Chargerrr",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800,color: Colors.green.shade800),),
                   Text("Find EV charging station near you",style: TextStyle(fontSize:16,color: Colors.grey ),),
                   const SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.grey.shade400,
-                        width: 0.5,
-                        strokeAlign: 4,
-                      ),
-                    ),
+                  ContainerDesign(
+                    // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(12),
+                    //   color: Colors.white,
+                    //   border: Border.all(
+                    //     color: Colors.grey.shade400,
+                    //     width: 0.5,
+                    //     strokeAlign: 4,
+                    //   ),
+                    // ),
                     child: Column(
                       children: [
                         Text(
@@ -71,20 +73,12 @@ class SignupPage extends StatelessWidget {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
-                            TextField(
-                              keyboardType: TextInputType.emailAddress,
+                            AppTextfield(
+                              type: TextInputType.name,
+                              hint: "Enter Your Full Name",
+                              icon: Icons.person,
                               controller: authController.nameController,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.mail),
-                                hint: Text("Enter your Full name"),
-                                filled: true,
-                                fillColor: Colors.grey.withValues(alpha: 0.1),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                alignLabelWithHint: true,
-                              ),
-                              style: const TextStyle(color: Colors.black),
+                              password: false,
                             ),
                             const SizedBox(height: 10),
                             Text(
@@ -92,20 +86,12 @@ class SignupPage extends StatelessWidget {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
-                            TextField(
-                              keyboardType: TextInputType.emailAddress,
+                            AppTextfield(
+                              type: TextInputType.emailAddress,
+                              hint: "Enter Your email",
+                              icon: Icons.mail,
                               controller: authController.emailController,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.mail),
-                                hint: Text("Enter your email"),
-                                filled: true,
-                                fillColor: Colors.grey.withValues(alpha: 0.1),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                alignLabelWithHint: true,
-                              ),
-                              style: const TextStyle(color: Colors.black),
+                              password: false,
                             ),
                             const SizedBox(height: 10),
                             Text(
@@ -113,20 +99,12 @@ class SignupPage extends StatelessWidget {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
-                            TextField(
-                              obscureText: true,
+                            AppTextfield(
+                              type: TextInputType.visiblePassword,
+                              hint: "Enter your password",
+                              icon: Icons.lock_outline,
                               controller: authController.passwordController,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.lock_outline),
-                                hint: Text("Enter your password"),
-                                filled: true,
-                                fillColor: Colors.grey.withValues(alpha: 0.1),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                alignLabelWithHint: true,
-                              ),
-                              style: const TextStyle(color: Colors.black),
+                              password: true,
                             ),
                           ],
                         ),

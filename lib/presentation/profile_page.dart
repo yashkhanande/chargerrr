@@ -1,6 +1,5 @@
 import 'package:chargerrr_app/controllers/auth_controller.dart';
 import 'package:chargerrr_app/presentation/auth/login_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

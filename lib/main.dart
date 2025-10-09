@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.dark,
         primaryColor: Color(0xff00C950),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: LoginPage(),
     );
